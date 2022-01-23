@@ -37,4 +37,12 @@ object DataStructures {
     tail(l, 1)
   }
 
+  // (Ex3.5)
+  @annotation.tailrec
+  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = {
+    l match {
+      case head :: next if f(head) => dropWhile(next, f)
+      case bs                      => bs
+    }
+  }
 }
