@@ -45,4 +45,23 @@ object DataStructures {
       case bs                      => bs
     }
   }
+
+  // (Ex3.6)
+  @annotation.tailrec
+  def init[A](l: List[A], acc: List[A] = Nil): List[A] = {
+    l match {
+      case head :: Nil  => acc
+      case head :: next => init(next, acc :++ List(head))
+      case Nil          => acc
+    }
+  }
+
+  // (Ex3.6) answer
+  def init_ans[A](l: List[A]): List[A] = {
+    l match {
+      case head :: Nil  => Nil
+      case head :: next => head :: init(next)
+      case Nil          => sys.error("init of empty list")
+    }
+  }
 }
