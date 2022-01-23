@@ -8,7 +8,7 @@ object DataStructures {
     case _                             => 101
   }
 
-  // (ex3.2)Listの最初の要素を削除する関数
+  // (Ex3.2)Listの最初の要素を削除する関数
   def tail[A](as: List[A]): List[A] = {
     as match {
       case _ :: next => next
@@ -16,12 +16,25 @@ object DataStructures {
     }
   }
 
-  // (ex3.3)Listの最初の要素を別の要素に置き換える関数
+  // (Ex3.3)Listの最初の要素を別の要素に置き換える関数
   def setHead[A](as: List[A], head: A): List[A] = {
     as match {
       case _ :: next => head :: next
       case Nil       => Nil
     }
+  }
+
+  // (Ex3.4)tailを一般化
+  def drop[A](l: List[A], n: Int): List[A] = {
+    @annotation.tailrec
+    def tail(as: List[A], count: Int): List[A] = {
+      as match {
+        case _ :: next if (n == count) => next
+        case _ :: next if (n > count)  => tail(next, count + 1)
+        case bs                        => bs
+      }
+    }
+    tail(l, 1)
   }
 
 }
