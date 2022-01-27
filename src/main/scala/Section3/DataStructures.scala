@@ -89,4 +89,17 @@ object DataStructures {
     }
   }
 
+  // (Ex3.11)
+  def sum2(ns: List[Int]): Int = {
+    foldLeft(ns, 0)(_ + _)
+  }
+
+  def product2(ns: List[Double]): Double = {
+    foldLeft(ns, 1.0)(_ * _)
+  }
+
+  def length2(ns: List[Int]): Int = {
+    foldLeft(ns, 0)((z, _) => z + 1)
+  }
+
 }
