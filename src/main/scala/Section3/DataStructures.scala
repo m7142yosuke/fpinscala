@@ -64,4 +64,20 @@ object DataStructures {
       case Nil          => sys.error("init of empty list")
     }
   }
+
+  // (Ex3.8)
+  def foldRight[A, B](as: List[A], z: B)(f: (A, B) => B): B = {
+    as match {
+      case Nil          => z
+      case head :: next => f(head, foldRight(next, z)(f))
+    }
+  }
+
+  def ex38_result = foldRight(List(1, 2, 3), Nil: List[Int])(::(_, _))
+
+  // (Ex3.9)
+  def length[A](as: List[A]): Int = {
+    foldRight(as, 0)((_, b) => b + 1)
+  }
+
 }
