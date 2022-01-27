@@ -80,4 +80,13 @@ object DataStructures {
     foldRight(as, 0)((_, b) => b + 1)
   }
 
+  // (Ex3.10)
+  @annotation.tailrec
+  def foldLeft[A, B](as: List[A], z: B)(f: (B, A) => B): B = {
+    as match {
+      case Nil          => z
+      case head :: next => foldLeft(next, f(z, head))(f)
+    }
+  }
+
 }
