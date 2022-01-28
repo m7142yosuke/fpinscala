@@ -102,4 +102,8 @@ object DataStructures {
     foldLeft(ns, 0)((z, _) => z + 1)
   }
 
+  // (Ex3.12)
+  def reverse(ns: List[Int]): List[Int] =
+    foldLeft(ns, Nil: List[Int])((a, b) => ::(b, a))
+
 }
