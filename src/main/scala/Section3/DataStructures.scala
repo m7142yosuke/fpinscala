@@ -107,8 +107,13 @@ object DataStructures {
     foldLeft(ns, Nil: List[Int])((a, b) => ::(b, a))
 
   // (Ex3.14)
-  def append[A](ns: List[A], a: A): List[A] = {
-    foldRight(ns, List(a))((x, y) => ::(x, y))
+  def append[A](ns: List[A], a: List[A]): List[A] = {
+    foldRight(ns, a)((x, y) => ::(x, y))
+  }
+
+  // (ex3.15)
+  def flatten[A](ns: List[List[A]]): List[A] = {
+    foldRight(ns, Nil: List[A])((x, y) => append(x, y))
   }
 
 }
