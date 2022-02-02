@@ -111,9 +111,27 @@ object DataStructures {
     foldRight(ns, a)((x, y) => ::(x, y))
   }
 
-  // (ex3.15)
+  // (Ex3.15)
   def flatten[A](ns: List[List[A]]): List[A] = {
     foldRight(ns, Nil: List[A])((x, y) => append(x, y))
+  }
+
+  // (Ex3.16)
+  def addPlusOne(ns: List[Int]): List[Int] = {
+    ns match {
+      case Nil          => Nil
+      case head :: Nil  => List(head + 1)
+      case head :: next => head + 1 :: addPlusOne(next)
+    }
+  }
+
+  // (Ex3.16)
+  def addPlusOneAns(l: List[Int]): List[Int] =
+    foldRight(l, Nil: List[Int])((h, t) => h + 1 :: t)
+
+  // (Ex3.17)
+  def convert2String(ns: List[Double]): List[String] = {
+    foldRight(ns, Nil: List[String])((h, t) => h.toString :: t)
   }
 
 }
